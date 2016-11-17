@@ -1,0 +1,13 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org">
+  <head>
+    <title>WishList App</title>
+  </head>
+  <body>
+    <h1 th:text="${family.name + ' Family'}"></h1>
+    
+    <div th:each="familyMember : ${family.familyMembers}">
+      <a th:href="@{/family/familyMember/{familyMemberId}(familyMemberId=${familyMember.id})}" th:text="${familyMember.name}"></a>
+    </div>
+  </body>
+</html>

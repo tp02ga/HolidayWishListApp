@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org">
+  <head>
+    <title>WishList App</title>
+  </head>
+  <body>
+    <h1 th:text="${'WishList for ' + familyMember.name }"></h1>
+    
+    <div th:each="gift : ${familyMember.gifts}">
+      <div th:inline="text">
+        [[${gift.name}]] <span th:if="${gift.url}" th:text="| (${gift.url})|"></span>
+        <div th:if="${isThisMe == false}"> 
+          <a th:if="${gift.dibsName == null}" th:href="@{/family/familyMember/{familyMemberId}/gifts/{giftId}/dibs(familyMemberId=${familyMember.id},giftId=${gift.id})}">(Call Dibs)</a>
+          <span th:if="${gift.dibsName != null}" th:text="| (${gift.dibsName} called dibs on this gift)|"></span>
+        </div>
+      </div>
+    </div>
+    
+    <div th:if="${#lists.isEmpty(familyMember.gifts)}" th:text="|${familyMember.name} has no gifts on their wishlist|"></div>
+    <br/>
+    
+    <div th:if="${isThisMe == true}">
+      <a th:href="@{/family/familyMember/{familyMemberId}/gifts(familyMemberId=${familyMember.id})}">Add a Gift</a>
+    </div>
+  </body>
+</html>

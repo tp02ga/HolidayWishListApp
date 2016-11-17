@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org">
+  <head>
+    <title>WishList App</title>
+  </head>
+  <body>
+    <h1 th:text="${'New Gift for ' + familyMember.name }"></h1>
+    
+    <form action="" method="post">
+      Name: <input type="text" th:field="${gift.name}"/><br/>
+      URL: <input type="text" th:field="${gift.url}"/><br/>
+      <input type="submit" value="Add Gift"/>
+    </form>
+  </body>
+</html>
